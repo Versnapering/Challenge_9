@@ -1,19 +1,19 @@
 <?php
-$host = "127.0.0.1";
-$username = "root";
-$password = "root";
+$host = "localhost";
+$db_username = "root";
+$db_password = "root";
 $database = "challenge_9";
 
-$conn = new mysqli($host, $username, $password, $database);
+$conn = new mysqli($host, $db_username, $db_password, $database);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-echo "Connected successfully!";
+//echo "Connected successfully!";
 
 // Example query (optional)
-$sql = "SELECT * FROM inlogGegevens";
+/*$sql = "SELECT * FROM inlogGegevens";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -23,7 +23,12 @@ if ($result->num_rows > 0) {
 } else {
     echo "No results found.";
 }
+*/
+
+$qrstmt = $conn->query("SELECT id, username, email, leeftijd, groep, datum FROM ticket");
+
+$tickets = $qrstmt->fetch_all(MYSQLI_ASSOC);
 
 // Close connection
-$conn->close();
+//$conn->close();
 ?>
