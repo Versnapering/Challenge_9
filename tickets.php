@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         const ticketEmail = <?= json_encode($_SESSION['ticket_email'] ?? '') ?>;
 
         if (ticketId) {
-            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=` + `localhost/projects/TEST_FILES/qr_code/read.php?id=` + ticketId;
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=` + `http://localhost/projects/Challenge_9_jaar_1/Challange_9_github_version/Challenge_9/tickets_r.php?id=` + ticketId;
 
             (async () => {
                 try {
