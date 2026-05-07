@@ -27,10 +27,10 @@
 
         }
 
-        if($check['ticketsoort'] == "kind"){
+        if($check['groep'] == "kind"){
             $kindcount = $kindcount + 1;
         }
-        elseif($check['ticketsoort'] == "volwassen"){
+        elseif($check['groep'] == "volwassen"){
             $volwassencount = $volwassencount + 1;
         }
     
