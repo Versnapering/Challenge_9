@@ -15,8 +15,12 @@
             <button class="button" onclick="location.href = 'index.php'">Home</button>
             <div style="height: 10px;"></div>
             <button class="button" onclick="location.href = 'index_l.php'">Limburgs</button>
+            <div style="height: 10px;"></div>
+            <button class="button" onclick="location.href = 'index_l.php'">Limburgs</button>
         </div>
         <div id="navbarFill_width"></div>
+
+        <div class="navbarFill"></div>
 
         <div class="navbarFill"></div>
         <div class="rightSide">
@@ -24,10 +28,14 @@
             <button id="ticket" class="button" onclick="location.href = 'tickets.php'">Tickets bestellen</button>
             <div style="height: 10px;"></div>
             <button id="inlog" class="button" onclick="location.href = 'login.php'">Inloggen</button>
+            <div style="height: 10px;"></div>
+            <button id="inlog" class="button" onclick="location.href = 'login.php'">Inloggen</button>
         </div>
+        <div class="navbarFill"></div>
         <div class="navbarFill"></div>
         <div class="rightSide">
             <div id="navbarFill_height"></div>
+            
             
         </div>
     </div>
@@ -50,6 +58,7 @@
             <div style="height: 36px; width: 100px;"></div>
             <img id="spikEnSpan_foto" src="images/SpikEnSpan_artiestenFoto.jpg" alt="Spik en Span"></img>
             <button id="showImage"></button>
+            <button id="showImage"></button>
         </div>
     </div>
 
@@ -60,6 +69,26 @@
             <h2 id="kasteel_text">Het eerstvolgende concert bevind zich in: Kasteel Limbricht!</h2>
         </div>
     </div>
+
+    <img id="skeletonGif" src="images\skeleton-running.gif"></img>
+
+    <script>
+        const button = document.getElementById('showImage')
+        const image = document.getElementById('skeletonGif')
+
+        button.addEventListener('click', function() {
+
+        if (image.style.display === 'none') {
+            image.style.display = 'block';
+            button.textContent = 'Oh shit, je hebt de skaletten vrij gelaten!';
+            button.style.top = '-197px'
+        } else {
+            image.style.display = 'none';
+            button.textContent = ""
+        }
+    });
+
+    </script>
 
     <img id="skeletonGif" src="images\skeleton-running.gif"></img>
 
