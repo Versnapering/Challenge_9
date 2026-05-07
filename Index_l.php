@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,7 +85,7 @@
         <h2 id="inc_text">Jannie en Pieter Vlossingen™ inc.</h2>
     </div>
 </body>
-=======
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -174,5 +173,4 @@
         <h2 id="inc_text">Jannie en Pieter Vlossingen™ inc.</h2>
     </div>
 </body>
->>>>>>> 72330740ba7f3456e7290773bd5440c67b33c1c1
 </html>
