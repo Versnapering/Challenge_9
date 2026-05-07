@@ -28,7 +28,5 @@
 
     <div style="height: 100px;"></div>
 
-    <h1></h1>
-
 </body>
 </html>
