@@ -108,8 +108,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="leeftijd">leeftijd</label><br>
                 <input type="number" id="leeftijd" name="leeftijd" min="1" max="150" required><br>
                 <input class="button" type="submit" name="submit" value="Generate_ticket">
+            </form>
+            <form action="tickets_r.php" method="get" id="ticketread" target="_blank">
                 <h2>Heb je al een ticket? Vul dan hier in:</h2>
-            <button class="button">check ticket</button>
+                <input type="number" id="ticketnumber" name="id" required><br>
+                <button class="button" type="submit" name="submit2" value="Open_ticket">check ticket</button>
             </form>
         </div>
     </div>
@@ -128,7 +131,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     await emailjs.send("service_jw301zv", "template_hp998z6", {
                         name: ticketName,
                         email: ticketEmail,
-                        qr: qrUrl
+                        qr: qrUrl,
+                        id: ticketId
                     });
 
                     await fetch("", {
