@@ -2,9 +2,55 @@
     include("db_connect.php");
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <div id="navbar">
+        <div id="logo" src="images/spikEnSpan.png" alt="logo"></div>
+        <div class="rightSide">
+            <div id="navbarFill_height"></div>
+            <button class="button" onclick="location.href = 'index.php'">Home</button>
+            <div style="height: 10px;"></div>
+            <button class="button" onclick="location.href = 'index_l.php'">Limburgs</button>
+        </div>
+        <div id="navbarFill_width"></div>
+
+        <div class="navbarFill"></div>
+        <div class="rightSide">
+            <div id="navbarFill_height"></div>
+            <button id="ticket" class="button" onclick="location.href = 'tickets.php'">Tickets bestellen</button>
+            <div style="height: 10px;"></div>
+            <button id="inlog" class="button" onclick="location.href = 'login.php'">Inloggen</button>
+        </div>
+        <div class="navbarFill"></div>
+        <div class="rightSide">
+            <div id="navbarFill_height"></div>
+            
+        </div>
+    </div>
+
+    <div style="height: 100px;"></div>
+
+    <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" id="ticketForm_2">
+        <input type="hidden" name="id" value="<?= htmlspecialchars($currentId) ?>">
+        <input type="submit" name="submit" value="Delete_Ticket" style="height: 25px;">
+    </form>
+
+</body>
+</html>
+
 <?php
 
     $currentId = $_POST['id'] ?? $_GET['id'] ?? null;
+
+    echo '<p id="ticketInfo">';
 
     echo $currentId . '<br>';
 
@@ -38,9 +84,11 @@
 
     if($entry == "De ticket is geldig. "){
         echo $entry . "de naam van de besteller is " . $username . ", de eigenaar van de ticket is " . $leeftijd . " jaar oud.<br>";
+        echo '<img style="margin-top: 20px; border-radius: 20px;" src="images/geldigImage.png"></img>';
     }
     else{
         echo $entry;
+        echo '<img style="height: 300px; width: 500px; margin-top: 20px; border-radius: 20px;" src="images/ongeldigImage.jpg"></img>';
     }
 
     if($korting != ""){
@@ -56,21 +104,5 @@
         }
     }
 
+    echo '</p>';
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" id="ticketForm">
-        <input type="hidden" name="id" value="<?= htmlspecialchars($currentId) ?>">
-        <input type="submit" name="submit" value="Delete_Ticket">
-    </form>
-
-    <?php echo "er is een totaal van " . $kindcount . " kinderen en " . $volwassencount . " volwassenen."?>
-</body>
-</html>
