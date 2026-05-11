@@ -66,20 +66,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
 </head>
 
-<body>
+<body>    
+    <!-- Navigation bar -->
+    <div id="navbar">
+        <div id="logo" src="images/spikEnSpan.png" alt="logo"></div>
+        <div class="rightSide">
+            <div id="navbarFill_height"></div>
+            <button class="button" onclick="location.href = 'index.php'">Home</button>
+            <div style="height: 10px;"></div>
+            <button class="button" onclick="location.href = 'index_l.php'">Limburgs</button>
+        </div>
+        <div id="navbarFill_width"></div>
 
-    <div class="maketicket">
-        <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" id="ticketForm">
-            <h2>Ticket bestellen Spik en Span Kasteel Limbricht</h2>
-            <label for="username">naam</label><br>
-            <input type="text" id="username" name="username" required><br>
-            <label for="email">email</label><br>
-            <input type="email" id="email" name="email" required><br>
-            <label for="leeftijd">leeftijd</label><br>
-            <input type="number" id="leeftijd" name="leeftijd" min="1" max="150" required><br>
-            <input type="submit" name="submit" value="Generate_ticket">
-        </form>
+        <div class="navbarFill"></div>
+        <div class="rightSide">
+            <div id="navbarFill_height"></div>
+            <button id="ticket" class="button" onclick="location.href = 'tickets.php'">Tickets bestellen</button>
+            <div style="height: 10px;"></div>
+            <button id="inlog" class="button" onclick="location.href = 'login.php'">Inloggen</button>
+        </div>
+        <div class="navbarFill"></div>
+        <div class="rightSide">
+            <div id="navbarFill_height"></div>
+            
+        </div>
     </div>
+
+    <div style="height: 100px;"></div>
+    
+    <div style=" display: flex;">
+        <!--left side filler-->
+        <div style="height: 50px; width: 40%;"></div>
+
+        <div class="maketicket">
+            <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" id="ticketForm">
+                <h2>Ticket bestellen Spik en Span Kasteel Limbricht</h2>
+                <label for="username">naam</label><br>
+                <input type="text" id="username" name="username" required><br>
+                <label for="email">email</label><br>
+                <input type="email" id="email" name="email" required><br>
+                <label for="leeftijd">leeftijd</label><br>
+                <input type="number" id="leeftijd" name="leeftijd" min="1" max="150" required><br>
+                <input class="button" type="submit" name="submit" value="Generate_ticket">
+                <h2>Heb je al een ticket? Vul dan hier in:</h2>
+            <button class="button">check ticket</button>
+            </form>
+        </div>
+    </div>
+    
 
     <script>
         const ticketId = <?= json_encode($_SESSION['new_ticket_id'] ?? null) ?>;
