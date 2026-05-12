@@ -3,6 +3,7 @@
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/spikEnSpan.ico">
 </head>
 <body>
 
@@ -12,19 +13,25 @@
         <div class="rightSide">
             <div id="navbarFill_height"></div>
             <button class="button" onclick="location.href = 'index.php'">Home</button>
+            <div style="height: 10px;"></div>
+            <button id="limburgs" onclick="location.href = 'index_l.php'">Limburgs</button>
         </div>
         <div id="navbarFill_width"></div>
+
+        <div class="navbarFill"></div>
         <div class="rightSide">
             <div id="navbarFill_height"></div>
             <button id="ticket" class="button" onclick="location.href = 'tickets.php'">Tickets bestellen</button>
-        </div>
-        <div id="navbarFill"></div>
-        <div class="rightSide">
-            <div id="navbarFill_height"></div>
+            <div style="height: 10px;"></div>
             <button id="inlog" class="button" onclick="location.href = 'login.php'">Inloggen</button>
         </div>
+        <div class="navbarFill"></div>
+        <div class="rightSide">
+            <div id="navbarFill_height"></div>
+            
+        </div>
     </div>
-    
+
     <div style="height: 100px;"></div>
     
         <div style="display: flex;">

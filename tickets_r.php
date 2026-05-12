@@ -1,5 +1,7 @@
 <?php
     include("db_connect.php");
+
+    $currentId = $_POST['id'] ?? $_GET['id'] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +10,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <link rel="icon" type="image/png" href="images/spikEnSpan.ico">
+    <title>Tickets</title>
 </head>
 <body>
     <!-- Navigation bar -->
@@ -18,7 +21,7 @@
             <div id="navbarFill_height"></div>
             <button class="button" onclick="location.href = 'index.php'">Home</button>
             <div style="height: 10px;"></div>
-            <button class="button" onclick="location.href = 'index_l.php'">Limburgs</button>
+            <button id="limburgs" onclick="location.href = 'index_l.php'">Limburgs</button>
         </div>
         <div id="navbarFill_width"></div>
 
@@ -40,16 +43,13 @@
 
     <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" id="ticketForm_2">
         <input type="hidden" name="id" value="<?= htmlspecialchars($currentId) ?>">
-        <input type="submit" name="submit" value="Delete_Ticket" style="height: 25px;">
+        <input type="submit" name="submit" value="Gebruik ticket" style="height: 25px;">
     </form>
 
 </body>
 </html>
 
 <?php
-
-    $currentId = $_POST['id'] ?? $_GET['id'] ?? null;
-
     echo '<p id="ticketInfo">';
 
     echo $currentId . '<br>';

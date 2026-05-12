@@ -1,3 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/spikEnSpan.ico">
+    <title>Tickets</title>
+
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init({
+                publicKey: "KFZXLRcnoNl6XwhVP",
+            });
+        })();
+    </script>
+</head>
+
+<body>    
+    <!-- Navigation bar -->
+    <div id="navbar">
+        <div id="logo" src="images/spikEnSpan.png" alt="logo"></div>
+        <div class="rightSide">
+            <div id="navbarFill_height"></div>
+            <button class="button" onclick="location.href = 'index.php'">Home</button>
+            <div style="height: 10px;"></div>
+            <button id="limburgs" onclick="location.href = 'index_l.php'">Limburgs</button>
+        </div>
+        <div id="navbarFill_width"></div>
+
+        <div class="navbarFill"></div>
+        <div class="rightSide">
+            <div id="navbarFill_height"></div>
+            <button id="ticket" class="button" onclick="location.href = 'tickets.php'">Tickets bestellen</button>
+            <div style="height: 10px;"></div>
+            <button id="inlog" class="button" onclick="location.href = 'login.php'">Inloggen</button>
+        </div>
+        <div class="navbarFill"></div>
+        <div class="rightSide">
+            <div id="navbarFill_height"></div>
+            
+        </div>
+    </div>
+
+    <div style="height: 100px;"></div>
+    
+    <div style=" display: flex;">
+        <!--left side filler-->
+        <div style="height: 50px; width: 40%;"></div>
+
+        <div class="maketicket">
+            <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" id="ticketForm">
+                <h2>Ticket bestellen Spik en Span Kasteel Limbricht</h2>
+                <label for="username">naam</label><br>
+                <input type="text" id="username" name="username" required><br>
+                <label for="email">email</label><br>
+                <input type="email" id="email" name="email" required><br>
+                <label for="leeftijd">leeftijd</label><br>
+                <input type="number" id="leeftijd" name="leeftijd" min="1" max="150" required><br>
+                <input type="submit" name="submit" value="Bestel ticket">
+                
+            </form>
+            <form action="tickets_r.php" method="get" id="ticketread" target="_blank">
+                <h2>Heb je al een ticket? Vul dan hier in:</h2>
+                <input type="number" id="ticketnumber" name="id" required><br>
+                <button class="button" type="submit" name="submit2" value="Open_ticket">check ticket</button>
+            </form>
+        </div>
+    </div>
+    
+
+    <script>
+        const ticketId = <?= json_encode($_SESSION['new_ticket_id'] ?? null) ?>;
+        const ticketName = <?= json_encode($_SESSION['ticket_username'] ?? '') ?>;
+        const ticketEmail = <?= json_encode($_SESSION['ticket_email'] ?? '') ?>;
+
+        if (ticketId) {
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=` + `http://localhost/projects/Challenge_9_jaar_1/Challange_9_github_version/Challenge_9/tickets_r.php?id=` + ticketId;
+
+            (async () => {
+                try {
+                    await emailjs.send("service_jw301zv", "template_hp998z6", {
+                        name: ticketName,
+                        email: ticketEmail,
+                        qr: qrUrl
+                    });
+
+                    await fetch("", {
+                    method: "POST",
+                    body: new URLSearchParams({ clear_ticket_session: "1" })
+                });
+
+                    window.alert("Email sent!");
+                } catch (err) {
+                    window.alert("Email failed:", err);
+                }
+            })();
+        }
+
+        document.getElementById('ticketForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            try {
+                const formData = new FormData(this);
+                await fetch(this.action, {
+                    method: 'POST',
+                    body: formData
+                });
+                window.location.reload();
+            } catch (error) {
+                console.error("Submit error:", error);
+                alert("Er ging iets mis bij het aanmaken van de ticket.");
+            }
+        });
+    </script>
+
+</body>
+
 <?php
 
 error_reporting(E_ALL);
@@ -44,126 +166,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Qr code test</title>
-
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-    </script>
-    <script type="text/javascript">
-        (function() {
-            emailjs.init({
-                publicKey: "KFZXLRcnoNl6XwhVP",
-            });
-        })();
-    </script>
-</head>
-
-<body>    
-    <!-- Navigation bar -->
-    <div id="navbar">
-        <div id="logo" src="images/spikEnSpan.png" alt="logo"></div>
-        <div class="rightSide">
-            <div id="navbarFill_height"></div>
-            <button class="button" onclick="location.href = 'index.php'">Home</button>
-            <div style="height: 10px;"></div>
-            <button class="button" onclick="location.href = 'index_l.php'">Limburgs</button>
-        </div>
-        <div id="navbarFill_width"></div>
-
-        <div class="navbarFill"></div>
-        <div class="rightSide">
-            <div id="navbarFill_height"></div>
-            <button id="ticket" class="button" onclick="location.href = 'tickets.php'">Tickets bestellen</button>
-            <div style="height: 10px;"></div>
-            <button id="inlog" class="button" onclick="location.href = 'login.php'">Inloggen</button>
-        </div>
-        <div class="navbarFill"></div>
-        <div class="rightSide">
-            <div id="navbarFill_height"></div>
-            
-        </div>
-    </div>
-
-    <div style="height: 100px;"></div>
-    
-    <div style=" display: flex;">
-        <!--left side filler-->
-        <div style="height: 50px; width: 40%;"></div>
-
-        <div class="maketicket">
-            <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" id="ticketForm">
-                <h2>Ticket bestellen Spik en Span Kasteel Limbricht</h2>
-                <label for="username">naam</label><br>
-                <input type="text" id="username" name="username" required><br>
-                <label for="email">email</label><br>
-                <input type="email" id="email" name="email" required><br>
-                <label for="leeftijd">leeftijd</label><br>
-                <input type="number" id="leeftijd" name="leeftijd" min="1" max="150" required><br>
-                <input class="button" type="submit" name="submit" value="Generate_ticket">
-            </form>
-            <form action="tickets_r.php" method="get" id="ticketread" target="_blank">
-                <h2>Heb je al een ticket? Vul dan hier in:</h2>
-                <input type="number" id="ticketnumber" name="id" required><br>
-                <button class="button" type="submit" name="submit2" value="Open_ticket">check ticket</button>
-            </form>
-        </div>
-    </div>
-    
-
-    <script>
-        const ticketId = <?= json_encode($_SESSION['new_ticket_id'] ?? null) ?>;
-        const ticketName = <?= json_encode($_SESSION['ticket_username'] ?? '') ?>;
-        const ticketEmail = <?= json_encode($_SESSION['ticket_email'] ?? '') ?>;
-
-        if (ticketId) {
-            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=` + `http://localhost/projects/Challenge_9_jaar_1/Challange_9_github_version/Challenge_9/tickets_r.php?id=` + ticketId;
-
-            (async () => {
-                try {
-                    await emailjs.send("service_jw301zv", "template_hp998z6", {
-                        name: ticketName,
-                        email: ticketEmail,
-                        qr: qrUrl,
-                        id: ticketId
-                    });
-
-                    await fetch("", {
-                    method: "POST",
-                    body: new URLSearchParams({ clear_ticket_session: "1" })
-                });
-
-                    window.alert("Email sent!");
-                } catch (err) {
-                    window.alert("Email failed:", err);
-                }
-            })();
-        }
-
-        document.getElementById('ticketForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            try {
-                const formData = new FormData(this);
-                await fetch(this.action, {
-                    method: 'POST',
-                    body: formData
-                });
-                window.location.reload();
-            } catch (error) {
-                console.error("Submit error:", error);
-                alert("Er ging iets mis bij het aanmaken van de ticket.");
-            }
-        });
-    </script>
-
-</body>
 
 </html>

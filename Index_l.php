@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spik en Span</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="/images/spikEnSpan.ico">
 </head>
 <body>
     <!-- Navigation bar -->
@@ -12,9 +13,9 @@
         <div id="logo" src="images/spikEnSpan.png" alt="logo"></div>
         <div class="rightSide">
             <div id="navbarFill_height"></div>
-            <button class="button" onclick="location.href = 'index.php'">Home</button>
+            <button class="button" onclick="location.href = 'index_l.php'">Home</button>
             <div style="height: 10px;"></div>
-            <button class="button" onclick="location.href = 'index.php'">Nederlands</button>
+            <button id="nederlands" onclick="location.href = 'index.php'">Nederlands</button>
         </div>
         <div id="navbarFill_width"></div>
 
@@ -49,6 +50,7 @@
         <div style="display: flex; flex-direction: column;">
             <div style="height: 36px; width: 100px;"></div>
             <img id="spikEnSpan_foto" src="images/SpikEnSpan_artiestenFoto.jpg" alt="Spik en Span"></img>
+                    <button id="showImage"></button>
         </div>
     </div>
 
@@ -62,8 +64,6 @@
 
         <img id="skeletonGif" src="images\skeleton-running.gif"></img>
 
-    <button id="showImage"></button>
-
     <script>
         const button = document.getElementById('showImage')
         const image = document.getElementById('skeletonGif')
@@ -72,7 +72,7 @@
 
         if (image.style.display === 'none') {
             image.style.display = 'block';
-            button.textContent = 'Oh sheiß, du hat der skaletten frei gelaten!';
+            button.textContent = 'Oh sheiß, du hast der skaletten frei gelaten!';
         } else {
             image.style.display = 'none';
             button.textContent = ""

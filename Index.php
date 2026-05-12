@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spik en Span</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/spikEnSpan.ico">
 </head>
 <body>
     <!-- Navigation bar -->
@@ -14,7 +15,7 @@
             <div id="navbarFill_height"></div>
             <button class="button" onclick="location.href = 'index.php'">Home</button>
             <div style="height: 10px;"></div>
-            <button class="button" onclick="location.href = 'index_l.php'">Limburgs</button>
+            <button id="limburgs" onclick="location.href = 'index_l.php'">Limburgs</button>
         </div>
         <div id="navbarFill_width"></div>
 
@@ -57,7 +58,7 @@
         <img id="kasteelLimbricht" src="images/kasteelLimbricht.jpg"></image>
         <div style="display: flex; flex-direction: column">
             <div style="width: 100%; height: 50px;"></div>
-            <h2 id="kasteel_text">Het eerstvolgende concert bevind zich in: Kasteel Limbricht!</h2>
+            <h2 id="kasteel_text">Het eerstvolgende concert bevindt zich in: Kasteel Limbricht!</h2>
         </div>
     </div>
 
